@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('login test', async ({ page }) => {
   await page.goto('https://ecommerce-admin.azureedge.net/login');
   await page.getByTestId('email-input').click();
   await page.getByTestId('email-input').fill('ecommerceadmin@yopmail.com');
