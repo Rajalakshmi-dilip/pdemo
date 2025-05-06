@@ -1,0 +1,38 @@
+pipeline {
+    agent { label 'agent-1' }
+
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Install Node.js and npm if not already installed
+                    bat 'curl -sL https://deb.nodesource.com/setup_14.x | bash -'
+                    bat 'choco install nodejs'
+                }
+                // Install project dependencies
+                bat 'npm install'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                // Run the Playwright test
+                bat 'npx playwright test tests/login.spec.js'
+            }
+        }
+
+        stage('Generate Report') {
+            steps {
+                // Generate HTML report
+                bat 'npx playwright show-report'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Archive the report
+            archiveArtifacts artifacts: 'playwright-report/**/*', allowEmptyArchive: true
+        }
+    }
+}
