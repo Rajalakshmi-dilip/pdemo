@@ -5,9 +5,8 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    // Install Node.js and npm if not already installed
-                    bat 'curl -sL https://deb.nodesource.com/setup_14.x | bash -'
-                    bat 'choco install nodejs'
+                    // Install Node.js and npm using Chocolatey
+                    bat 'choco install -y nodejs'
                 }
                 // Install project dependencies
                 bat 'npm install'
@@ -16,7 +15,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                // Run the Playwright test rr
+                // Run the Playwright test
                 bat 'npx playwright test tests/login.spec.js'
             }
         }
