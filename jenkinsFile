@@ -16,7 +16,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                // Run the Playwright test
+                // Run the Playwright test rr
                 bat 'npx playwright test tests/login.spec.js'
             }
         }
