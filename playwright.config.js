@@ -1,10 +1,8 @@
-const { defineConfig } = require('@playwright/test');
+import { defineConfig } from '@playwright/test';
 
-module.exports = defineConfig({
+export default defineConfig({
   testDir: './tests',
-  reporter: [
-    ['html', { outputFolder: 'playwright-report' }]
-  ],
+  reporter: [['html', { outputFolder: 'playwright-report' }]],
   use: {
     headless: true,
     viewport: { width: 1280, height: 720 },
