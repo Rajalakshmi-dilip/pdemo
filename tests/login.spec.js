@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+const { test, expect } = require('@playwright/test');
 
 test('login test', async ({ page }) => {
   await page.goto('https://ecommerce-admin.azureedge.net/login');
